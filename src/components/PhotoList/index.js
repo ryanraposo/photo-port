@@ -126,7 +126,7 @@ function PhotoList({ category }) {
 
   function toggleModal(image, i) {
     setCurrentPhoto({...image, index: i});
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
   }
 
   const currentPhotos = photos.filter(photo => photo.category === category);
@@ -146,7 +146,9 @@ function PhotoList({ category }) {
 
   return (
     <div>
-      {isModalOpen && <Modal currentPhoto={currentPhoto} />}
+      {isModalOpen && (
+        <Modal currentPhoto={currentPhoto} onClose={toggleModal} />
+      )}
       <div className="flex-row">
         {currentPhotosElements}
       </div>
